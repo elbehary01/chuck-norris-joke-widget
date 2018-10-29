@@ -1,11 +1,11 @@
-# Bootstrap 4 + WebPack 4 = Boilerplate
+# Chuck Norris API Widget
 
-This is a basic boilerplate using Bootstrap 4 with SCSS and WebPack, to have an easy and fast setup for new website projects to build upon.
+This is a JavaScript exercise to work with classes and APIs. We load jokes from the Chuck Norris API that is free to use from [http://www.icndb.com/api/](http://www.icndb.com/api/).
 
 ## Installation
 
 1. Clone the repository
-2. Run `npm install` or `yarn` on the command line
+2. Run `npm install` on the command line
 
 ## Build
 
