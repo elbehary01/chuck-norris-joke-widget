@@ -1,0 +1,47 @@
+@import "~bootstrap/scss/bootstrap";
+
+body {
+  margin-top: 3rem;
+}
+
+h1 {
+  color: #555555;
+  margin-bottom: 2rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px dashed #c0c0c0;
+}
+
+.joke {
+  display: inline-block;
+  position: relative;
+  font-size: 1.5rem;
+  padding: 0 3.5rem;
+  margin: 3rem 0;
+
+  &:before,
+  &:after {
+    content: "''";
+    display: block;
+    position: absolute;
+    top: -2rem;
+    left: 0;
+    font-size: 5rem;
+    line-height: 5rem;
+    color: #888;
+  }
+
+  &:after {
+    top: auto;
+    left: auto;
+    bottom: -4rem;
+    right: 0;
+  }
+}
+
+.nav-joke-by-id {
+  display: inline-block;
+}
+
+.hidden {
+  display: none;
+}
