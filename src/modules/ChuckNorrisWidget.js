@@ -43,9 +43,14 @@ class ChuckNorrisWidget {
     this.registerEvents();
 
     // Get a random joke by default
-    this.api.getRandomJokes(1, response => {
-      this.updateDisplay(response.value[0].joke);
-    });
+    this.api
+      .getRandomJokes(1)
+      .then(data => {
+        this.updateDisplay(data.value[0].joke);
+      })
+      .catch(error => {
+        this.showError(error.message);
+      });
   }
 
   registerEvents() {
@@ -53,8 +58,8 @@ class ChuckNorrisWidget {
     this.elements.nav.buttonRandom.addEventListener("click", e => {
       e.target.setAttribute("disabled", "disabled");
 
-      this.api.getRandomJokes(1, response => {
-        this.updateDisplay(response.value[0].joke);
+      this.api.getRandomJokes(1).then(data => {
+        this.updateDisplay(data.value[0].joke);
         e.target.removeAttribute("disabled");
       });
     });
@@ -71,19 +76,17 @@ class ChuckNorrisWidget {
 
       const id = Number(this.elements.nav.inputJokeId.value.trim());
 
-      this.api.getJokeById(id, response => {
-        if (response.type === "success") {
-          this.updateDisplay(response.value.joke);
+      this.api.getJokeById(id).then(data => {
+        if (data.type === "success") {
+          this.updateDisplay(data.value.joke);
         } else {
-          console.log(response);
-
-          switch (response.type) {
+          switch (data.type) {
             case "NoSuchQuoteException":
               this.showError(`Could not find any quote with the ID ${id}!`);
               break;
 
             default:
-              this.showError(`Error: ${response.value}`);
+              this.showError(`Error: ${data.value}`);
               break;
           }
         }
@@ -95,7 +98,11 @@ class ChuckNorrisWidget {
 
     // Form: Name for the joke
     this.elements.nav.inputJokeName.addEventListener("keyup", e => {
-      this.api.setName(this.elements.nav.inputJokeName.value.trim());
+      const name = this.elements.nav.inputJokeName.value.trim();
+
+      if (name.length > 1) {
+        this.api.setName(name);
+      }
     });
   }
 

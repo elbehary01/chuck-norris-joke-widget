@@ -1,9 +1,3 @@
-import Popper from "popper.js";
-window.jQuery = $;
-window.$ = $;
-
-require("bootstrap");
-
 import ChuckNorrisWidget from "./modules/ChuckNorrisWidget";
 
 const widget = new ChuckNorrisWidget({

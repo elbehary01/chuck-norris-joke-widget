@@ -12,39 +12,39 @@ class ChuckNorrisApi {
   }
 
   // Get any random joke
-  getRandomJokes(amount, callback) {
+  getRandomJokes(amount) {
     // old version, if you don't have an extra method for creating the URLs
     // const url = `${this.baseUrl}${this.endpoints.random}`.replace("{amount}", "");
 
     // { amount }  is equal to  { amount: amount }  because it sets the value for a property with
     // the name "amount" to the value of the variable with that same name "amount".
     const url = this.buildUrl(this.endpoints.random, { amount });
-    this.call(url, callback);
+    return this.call(url);
   }
 
   // Get a single joke, by its ID
-  getJokeById(id, callback) {
+  getJokeById(id) {
     const url = this.buildUrl(this.endpoints.single, { id });
-    this.call(url, callback);
+    return this.call(url);
   }
 
   // Get the total amount of jokes
-  getJokeCount(callback) {
+  getJokeCount() {
     const url = this.buildUrl(this.endpoints.count);
-    this.call(url, callback);
+    return this.call(url);
   }
 
   // Get the categories for jokes
-  getCategories(callback) {
+  getCategories() {
     const url = this.buildUrl(this.endpoints.categories);
-    this.call(url, callback);
+    return this.call(url);
   }
 
-  // Call a URL, using jQuery and call the given callback, when the asynchronous
+  // Call a URL, using jQuery and return a promise, when the asynchronous
   // request is successfull.
-  call(url, callback) {
-    $.getJSON(url).done(response => {
-      callback(response);
+  call(url) {
+    return fetch(url).then(response => {
+      return response.json();
     });
   }
 
@@ -75,6 +75,8 @@ class ChuckNorrisApi {
 
       if (parts.length > 1) {
         url += "&lastName=" + parts[1];
+      } else {
+        url += "&lastName=";
       }
     }
 
