@@ -152,7 +152,7 @@ class ChuckNorrisWidget {
           <input type="text" class="form-control mb-2 mb-md-0 nav-joke-id"  placeholder="Joke ID">
           <button class="btn btn-secondary ml-md-2 nav-btn-by-id">Get Joke</button>
         </form>
-        <button class="btn btn-default nav-random-joke ml-2">Random Joke</button>
+        <button class="btn btn-secondary nav-random-joke ml-2">Random Joke</button>
 
         <div class="float-right">
           <input type="text" class="form-control mb-2 mb-md-0 nav-joke-name" placeholder="Joke Name" value="${
